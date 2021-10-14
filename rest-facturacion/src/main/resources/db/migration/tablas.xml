@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="FAC-001" author="Matias Rodriguez">
+        <comment>Creacion de tabla de tarjetas</comment>
+        <!-- CREACION TB_TARJETA -->
+        <createTable tableName="TB_TARJETA" remarks="Contiene la informacion de todos las tarjetas">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de las tarjetas">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion de las tarjetas">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="FAC-002" author="Matias Rodriguez">
+        <comment>Creacion de tabla de formas de pago</comment>
+        <!-- CREACION TB_FORMAPAGO -->
+        <createTable tableName="TB_FORMAPAGO" remarks="Contiene la informacion de todos las formas de pago">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de las formas de pago">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion de las formas de pago">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="FAC-003" author="Matias Rodriguez">
+        <comment>Creacion de tabla de ventas</comment>
+        <!-- CREACION TB_VENTA -->
+        <createTable tableName="TB_VENTA" remarks="Contiene la informacion de todos las ventas">
+            <column name="NRO_TICKET" type="int" autoIncrement="true" remarks="Identificador de las ventas">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="FECHA_HORA" type="datetime" remarks=" fecha de las ventas">
+            </column>
+            <column name="TOTAL" type="int" remarks="Importe total del producto">
+            </column>
+            <column name="TARJETA_ID" type="int" remarks="Identificador de las tarjetas">
+                <constraints foreignKeyName="FK_VENTA_TARJETA" references="TB_TARJETA(id)"/>
+            </column>
+            <column name="FORMA_PAGO_ID" type="int" remarks="Identificador de las formas de pago">
+                <constraints foreignKeyName="FK_VENTA_FORMAPAGO" references="TB_FORMAPAGO(id)"/>
+            </column>
+            <column name="NRO_CUPON" type="varchar(255)" remarks="Nro de cupon de la venta">
+            </column>
+            <column name="CLIENTE_ID" type="int" remarks="Identificador del cliente">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="FAC-004" author="Matias Rodriguez">
+        <comment>Creacion de tabla de detalles de venta </comment>
+        <!-- CREACION TB_DETALLEVENTA -->
+        <createTable tableName="TB_DETALLEVENTA" remarks="Contiene la informacion de todos los detalles de venta">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de las formas de pago">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="VENTA_ID" type="int" remarks="Identificador de las ventas">
+                <constraints foreignKeyName="FK_DETALLE_VENTA" references="TB_VENTA(id)"/>
+            </column>
+            <column name="CANTIDAD" type="int" remarks="Cantidad del detalle">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRODUCTO_ID" type="int" remarks="Identificador del producto">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

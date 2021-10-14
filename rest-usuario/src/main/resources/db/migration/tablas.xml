@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="USU-ROL-001" author="Matias Rodriguez">
+        <comment>Creacion de tabla de roles</comment>
+        <!-- CREACION TB_ROL -->
+        <createTable tableName="TB_ROL" remarks="Contiene la informacion de todos los roles">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de los roles">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion de los roles">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="TB_USUARIO" remarks="Contiene la informacion de todos los usuarios">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de los usuarios">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="USUARIO" type="tinytext">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOMBRE" type="tinytext" remarks="Nombre del usuario">
+                <constraints nullable="false"/>
+            </column>
+            <column name="APELLIDO" type="tinytext" remarks="Apellido del usuario">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="tinytext" remarks="Contrasena del usuario">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROL_ID" type="int" remarks="Identificador deL rol">
+                <constraints foreignKeyName="FK_USUARIO" references="TB_ROL(id)"/>
+            </column>
+            <column name="ESTADO" type="boolean" remarks="Activo/Inactivo">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>

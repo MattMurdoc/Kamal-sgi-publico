@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="PRO-001: Datos maestro de tipo de movimiento" author="Alejandro Toigo">
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="1"/>
+            <column name="DESCRIPCION" value="Entrada"/>
+            <column name="VALOR" value="1"/>
+            <column name="TIPO_DATO" value="Tipo movimiento"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="2"/>
+            <column name="DESCRIPCION" value="Salida"/>
+            <column name="VALOR" value="2"/>
+            <column name="TIPO_DATO" value="Tipo movimiento"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="3"/>
+            <column name="DESCRIPCION" value="Ajuste de stock"/>
+            <column name="VALOR" value="3"/>
+            <column name="TIPO_DATO" value="Tipo movimiento"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="PRO-002: Datos maestro de motivo (movimiento de stock)" author="Alejandro Toigo">
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="4"/>
+            <column name="DESCRIPCION" value="Compra"/>
+            <column name="VALOR" value="1"/>
+            <column name="TIPO_DATO" value="Motivo"/>
+            <column name="FILTRO" value="1"/>
+            <column name="DESCRIPCION_FILTRO" value="Entrada"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="5"/>
+            <column name="DESCRIPCION" value="Traspaso sucursal"/>
+            <column name="VALOR" value="2"/>
+            <column name="TIPO_DATO" value="Motivo"/>
+            <column name="FILTRO" value="1"/>
+            <column name="DESCRIPCION_FILTRO" value="Entrada"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="6"/>
+            <column name="DESCRIPCION" value="Venta"/>
+            <column name="VALOR" value="3"/>
+            <column name="TIPO_DATO" value="Motivo"/>
+            <column name="FILTRO" value="2"/>
+            <column name="DESCRIPCION_FILTRO" value="Salida"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="7"/>
+            <column name="DESCRIPCION" value="Merma declarada"/>
+            <column name="VALOR" value="4"/>
+            <column name="TIPO_DATO" value="Motivo"/>
+            <column name="FILTRO" value="2"/>
+            <column name="DESCRIPCION_FILTRO" value="Salida"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="8"/>
+            <column name="DESCRIPCION" value="Merma no declarada"/>
+            <column name="VALOR" value="5"/>
+            <column name="TIPO_DATO" value="Motivo"/>
+            <column name="FILTRO" value="2"/>
+            <column name="DESCRIPCION_FILTRO" value="Salida"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="9"/>
+            <column name="DESCRIPCION" value="Vencimiento"/>
+            <column name="VALOR" value="6"/>
+            <column name="TIPO_DATO" value="Motivo"/>
+            <column name="FILTRO" value="2"/>
+            <column name="DESCRIPCION_FILTRO" value="Salida"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="10"/>
+            <column name="DESCRIPCION" value="Auditoría"/>
+            <column name="VALOR" value="7"/>
+            <column name="TIPO_DATO" value="Motivo"/>
+            <column name="FILTRO" value="3"/>
+            <column name="DESCRIPCION_FILTRO" value="Ajuste de stock"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="PRO-003: Lista de precio 1" author="Alejandro Toigo">
+        <insert tableName="TB_PRODUCTO_LISTA">
+            <column name="ID" value="1"/>
+            <column name="DESCRIPCION" value="Lista 1"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="PRO-004: Productos importados" author="Alejandro Toigo">
+        <sqlFile path="/import/producto_database_public_tb_producto_stock.sql" relativeToChangelogFile="true"/>
+        <sqlFile path="/import/producto_database_public_tb_producto.sql" relativeToChangelogFile="true"/>
+        <sqlFile path="/import/producto_database_public_tb_producto_lista_precio.sql" relativeToChangelogFile="true"/>
+        <sql>
+            ALTER SEQUENCE tb_producto_id_seq RESTART 3969;
+            ALTER SEQUENCE tb_producto_lista_precio_id_seq RESTART 3969;
+            ALTER SEQUENCE tb_producto_stock_id_seq RESTART 3969;
+        </sql>
+    </changeSet>
+
+    <changeSet id="PRO-005" author="Alejandro Toigo">
+        <insert tableName="TB_UNIDAD">
+            <column name="ID" value="1"/>
+            <column name="DESCRIPCION" value="Kilo"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+        <insert tableName="TB_UNIDAD">
+            <column name="ID" value="2"/>
+            <column name="DESCRIPCION" value="Metro"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+        <insert tableName="TB_UNIDAD">
+            <column name="ID" value="5"/>
+            <column name="DESCRIPCION" value="Litro"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+        <insert tableName="TB_UNIDAD">
+            <column name="ID" value="7"/>
+            <column name="DESCRIPCION" value="Unidad"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+        <insert tableName="TB_UNIDAD">
+            <column name="ID" value="14"/>
+            <column name="DESCRIPCION" value="Gramo"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+        <insert tableName="TB_UNIDAD">
+            <column name="ID" value="41"/>
+            <column name="DESCRIPCION" value="Miligramo"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+        <insert tableName="TB_UNIDAD">
+            <column name="ID" value="42"/>
+            <column name="DESCRIPCION" value="Mililitro"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

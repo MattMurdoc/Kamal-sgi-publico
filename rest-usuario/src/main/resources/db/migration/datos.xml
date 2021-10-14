@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="USU-ROL-001" author="Matias Rodriguez">
+
+        <insert tableName="TB_ROL">
+            <column name="ID" value="1"/>
+            <column name="DESCRIPCION" value="admin"/>
+        </insert>
+        <insert tableName="TB_ROL">
+            <column name="ID" value="2"/>
+            <column name="DESCRIPCION" value="cajero"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="USU-ROL-002" author="Nicolas Martin">
+
+        <insert tableName="TB_USUARIO">
+            <column name="ID" value="1"/>
+            <column name="USUARIO" value="gbarakat"/>
+            <column name="NOMBRE" value="Gina"/>
+            <column name="APELLIDO" value="Barakat"/>
+            <column name="PASSWORD" value="GsxhVNf1mn08R6QFOjx96w=="/>
+            <column name="ROL_ID" value="1"/>
+            <column name="ESTADO" value="true"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

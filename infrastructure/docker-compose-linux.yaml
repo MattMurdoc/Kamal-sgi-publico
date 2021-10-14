@@ -1,0 +1,18 @@
+version: "3"
+services:
+    database:
+        image: "postgres:10.5"
+        container_name: "super-database"
+        ports:
+            - "5432:5432"
+        volumes:
+            - ./db-init/initialize-databases.sql:/docker-entrypoint-initdb.d/init.sql
+
+    rest-producto:
+        image: "kamal-rest-producto"
+        container_name: "kamal"
+        depends_on:
+            - "super_database"
+        ports:
+            - "8080"
+        command: ["./wait-for-it.sh", "database:5432", "--", "python" "app.py"]

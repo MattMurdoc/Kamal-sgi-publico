@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="PRV-CLI-001" author="Nicolas Martin">
+        <comment>Creacion de tabla de cliente</comment>
+
+        <!-- CREACION TB_CLIENTE -->
+        <createTable tableName="TB_CLIENTE" remarks="Contiene la informacion de todos los clientes">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador del cliente">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="CATEGORIA_IVA" type="int" remarks="Categoria iva del cliente">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CUIT" type="varchar(100)" remarks="Cuit del cliente">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RAZON_SOCIAL" type="tinytext" remarks="Razon social del cliente">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DOMICILIO" type="tinytext" remarks="Domicilio del cliente">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="PRV-CLI-004" author="Nicolas Martin">
+        <comment>Creacion de tabla de localidad</comment>
+        <!-- CREACION TB_LOCALIDAD -->
+        <createTable tableName="TB_LOCALIDAD" remarks="Contiene la informacion de todas las localidades">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de la localidad">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion de la localidad">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="PRV-CLI-002" author="Nicolas Martin">
+        <comment>Creacion de tabla de provincia</comment>
+        <!-- CREACION TB_PROVINCIA -->
+        <createTable tableName="TB_PROVINCIA"
+                     remarks="Contiene la informacion de todas las provincias">
+            <column name="ID" type="int" autoIncrement="true" remarks="ID de la provincia">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion de la provincia">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="PRV-CLI-003" author="Nicolas Martin">
+        <comment>Creacion de tabla de rubro</comment>
+
+        <!-- CREACION TB_RUBRO -->
+        <createTable tableName="TB_RUBRO"
+                     remarks="Contiene la informacion de todos los rubros">
+            <column name="ID" type="int" autoIncrement="true" remarks="ID del rubro">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion del rubro">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ESTADO" type="boolean" remarks="Estado del rubro">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROVINCIA_ID" type="int" remarks="Identificador de las provincias">
+                <constraints foreignKeyName="FK_LOCALIDAD_PROVINCIA" references="TB_PROVINCIA(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="PRV-CLI-005" author="Nicolas Martin">
+        <comment>Creacion de tabla de proveedor</comment>
+
+        <!-- CREACION TB_PROVEEDOR -->
+        <createTable tableName="TB_PROVEEDOR"
+                     remarks="Contiene la informacion de todos los proveedores">
+            <column name="ID" type="int" autoIncrement="true" remarks="ID del proveedor">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="CUIT" type="varchar(22)" remarks="Cuit del proveedor">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TELEFONO_CELULAR" type="varchar(100)" remarks="Telefono celular del proveedor">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DOMICILIO" type="varchar(100)" remarks="Domicilio del proveedor">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="varchar(100)" remarks="Email del proveedor">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOMBRE_FANTASIA" type="varchar(100)" remarks="Nombre de fantasia del proveedor">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PAGINA_WEB" type="varchar(100)" remarks="Pagina web del proveedor">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RAZON_SOCIAL" type="varchar(100)" remarks="Razon social del proveedor">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TELEFONO" type="varchar(100)" remarks="Telefono del proveedor">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOCALIDAD_ID" type="int" remarks="ID de la localidad">
+                <constraints foreignKeyName="FK_PROVEEDOR_RUBRO" references="TB_RUBRO(id)"/>
+            </column>
+            <column name="RUBRO_ID" type="int" remarks="ID del rubro">
+                <constraints foreignKeyName="FK_PROVEEDOR_LOCALIDAD" references="TB_LOCALIDAD(id)"/>
+            </column>
+            <column name="PROVINCIA_ID" type="int" remarks="ID de la provincia">
+                <constraints foreignKeyName="FK_PROVEEDOR_PROVINCIA" references="TB_PROVINCIA(id)"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="PRV-CLI-006" author="Nicolas Martin">
+        <comment>Creacion de tabla de contacto</comment>
+
+        <!-- CREACION TB_CONTACTO -->
+        <createTable tableName="TB_CONTACTO" remarks="Contiene la informacion de todos los contactos">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador del contacto">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="TELEFONO_CELULAR" type="tinytext" remarks="Telefono celular del contacto">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="tinytext" remarks="Email del contacto">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOMBRE" type="tinytext" remarks="Nombre del contacto">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TELEFONO" type="tinytext" remarks="Telefono del contacto">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROVEEDOR_ID" type="int" remarks="ID del proveedor">
+                <constraints foreignKeyName="FK_CONTACTO_PROVEEDOR" references="TB_PROVEEDOR(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="PRV-CLI-007" author="Nicolas Martin">
+        <comment>Creacion de tabla maestro</comment>
+
+        <!-- CREACION TB_MAESTRO -->
+        <createTable tableName="TB_MAESTRO"
+                     remarks="Contiene la informacion de datos estaticos que no pueden ser insertados por sistema">
+            <column name="ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VALOR" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TIPO_DATO" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPCION_FILTRO" type="tinytext"/>
+            <column name="FILTRO" type="int"/>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>

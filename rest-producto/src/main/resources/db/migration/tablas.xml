@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="CLI-PRO-001" author="Alejandro Toigo">
+        <comment>Creacion de tabla de unidad de medida</comment>
+        <!-- CREACION TB_UNIDAD -->
+        <createTable tableName="TB_UNIDAD" remarks="Contiene la informacion de todos las unidades de medida">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de la unidad de medida">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion de la unidad de medida">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ESTADO" type="boolean" remarks="Activo/Inactivo">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-002" author="Matias Rodriguez">
+        <comment>Creacion de tabla departamento</comment>
+
+        <!-- CREACION TB_DEPARTAMENTO -->
+        <createTable tableName="TB_DEPARTAMENTO" remarks="Contiene la informacion de todos los departamentos">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de los departamentos">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion de los departamentos">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ESTADO" type="boolean" remarks="Activo/Inactivo">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-003" author="Matias Rodriguez">
+        <comment>Creacion de tabla secciones</comment>
+
+        <!-- CREACION TB_SECCION -->
+        <createTable tableName="TB_SECCION" remarks="Contiene la informacion de todos las secciones">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de las secciones">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion de las secciones">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPARTAMENTO_ID" type="int" remarks="Identificador de los DEPARTAMENTOS">
+                <constraints foreignKeyName="FK_SECCION_DEPARTAMENTO" references="TB_DEPARTAMENTO(id)"/>
+            </column>
+            <column name="ESTADO" type="boolean" remarks="Activo/Inactivo">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-004" author="Matias Rodriguez">
+        <comment>Creacion de tabla familias</comment>
+
+        <!-- CREACION TB_FAMILIA -->
+        <createTable tableName="TB_FAMILIA" remarks="Contiene la informacion de todos las familias">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de las familias">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion de las familias">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SECCION_ID" type="int" remarks="Identificador de la seccion">
+                <constraints foreignKeyName="FK_FAMILIA_SECCION" references="TB_SECCION(id)"/>
+            </column>
+            <column name="ESTADO" type="boolean" remarks="Activo/Inactivo">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-005" author="Matias Rodriguez">
+        <comment>Creacion de tabla subFamilias</comment>
+
+        <!-- CREACION TB_SUBFAMILIA -->
+        <createTable tableName="TB_SUBFAMILIA" remarks="Contiene la informacion de todos las subFamilias">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de las subFamilias">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion de las subFamilias">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FAMILIA_ID" type="int" remarks="Identificador de la familia">
+                <constraints foreignKeyName="FK_SUBFAMILIA_FAMILIA" references="TB_FAMILIA(id)"/>
+            </column>
+            <column name="ESTADO" type="boolean" remarks="Activo/Inactivo">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-006" author="Alejandro Toigo">
+        <comment>Creacion de tabla de marca</comment>
+
+        <!-- CREACION TB_MARCA -->
+        <createTable tableName="TB_MARCA" remarks="Contiene la informacion de todas las marcas">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de la marca">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion de la marca">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ESTADO" type="boolean" remarks="Activo/Inactivo">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-007" author="Alejandro Toigo">
+        <comment>Creacion de tabla maestro</comment>
+
+        <!-- CREACION TB_MAESTRO -->
+        <createTable tableName="TB_MAESTRO"
+                     remarks="Contiene la informacion de datos estaticos que no pueden ser insertados por sistema">
+            <column name="ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VALOR" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TIPO_DATO" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPCION_FILTRO" type="tinytext"/>
+            <column name="FILTRO" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="CLI-PRO-008" author="Alejandro Toigo">
+        <comment>Creacion de la tabla del stock de productos</comment>
+        <createTable tableName="TB_PRODUCTO_STOCK" remarks="Contiene la informacion del stock de los productos">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador del stock de producto">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="CONTROLA_STOCK" type="boolean" remarks="Flag para saber si el producto controla stock Si/No">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STOCK" type="int" remarks="Indicador de stock"/>
+            <column name="STOCK_MIN" type="int" remarks="Indicador de stock mínimo"/>
+            <column name="STOCK_MAX" type="int" remarks="Indicador de stock máximo"/>
+            <column name="PUNTO_PEDIDO" type="int" remarks="Indicador del punto de pedido"/>
+            <column name="PERMITE_CARGAR" type="boolean"
+                    remarks="Indicador para el saber si el producto permite cargar stock si es mayor o igual al máximo"/>
+            <column name="PERMITE_DESCARGAR" type="boolean"
+                    remarks="Indicador para el saber si el producto permite descargar stock si es menor o igual a 0"/>
+            <column name="EQUIVALENCIA_CARGA" type="double"
+                    remarks="Equivalencia de la unidad de medida de compras en cantidad de stock real"/>
+            <column name="EQUIVALENCIA_DESCARGA" type="double"
+                    remarks="Equivalencia de la unidad de medida de ventas en cantidad de stock real"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="CLI-PRO-009" author="Alejandro Toigo">
+        <preConditions onFail="HALT">
+            <tableExists tableName="TB_UNIDAD"/>
+            <tableExists tableName="TB_MAESTRO"/>
+            <tableExists tableName="TB_MARCA"/>
+        </preConditions>
+        <comment>Creacion de la tabla de productos</comment>
+        <createTable tableName="TB_PRODUCTO" remarks="Contiene la informacion de los productos del sistema">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador del producto">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="mediumtext">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODIGO" type="varchar(255)" remarks="Identificador interno de producto">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODIGO_INTERNO" type="varchar(255)" remarks="Identificador interno de producto"/>
+            <column name="PROVEEDOR_ID" type="int" remarks="Identificador del proveedor"/>
+            <column name="DEPARTAMENTO_ID" type="int" remarks="Identificador del proveedor">
+                <constraints foreignKeyName="FK_PRODUCTO_DEPARTAMENTO" references="TB_DEPARTAMENTO(id)"/>
+            </column>
+            <column name="SECCION_ID" type="int" remarks="Identificador de la seccion">
+                <constraints foreignKeyName="FK_PRODUCTO_SECCION" references="TB_SECCION(id)"/>
+            </column>
+            <column name="FAMILIA_ID" type="int" remarks="Identificador de la familia">
+                <constraints foreignKeyName="FK_PRODUCTO_FAMILIA" references="TB_FAMILIA(id)"/>
+            </column>
+            <column name="SUBFAMILIA_ID" type="int" remarks="Identificador de la sub familia">
+                <constraints foreignKeyName="FK_PRODUCTO_SUBFAMILIA" references="TB_SUBFAMILIA(id)"/>
+            </column>
+            <column name="MARCA_ID" type="int" remarks="Identificador de la marca">
+                <constraints foreignKeyName="FK_PRODUCTO_MARCA" references="TB_MARCA(id)"/>
+            </column>
+            <column name="UNIDAD_ID" type="int" remarks="Identificador de la unidad de medida del producto">
+                <constraints foreignKeyName="FK_PRODUCTO_UNIDAD" references="TB_UNIDAD(id)"/>
+            </column>
+            <column name="GRAMAJE" type="int" remarks="Gramaje del producto"/>
+            <column name="ESTADO" type="boolean" remarks="Activo/Inactivo">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STOCK_ID" type="int" remarks="Identificador del stock producto">
+                <constraints foreignKeyName="FK_PRODUCTO_STOCK" references="TB_PRODUCTO_STOCK(id)"/>
+            </column>
+            <column name="IMPUESTOIVA" type="int" remarks="Impuesto iva del producto">
+            </column>
+            <column name="NOMBRE_FANTASIA" type="mediumtext">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-011" author="Matias Rodriguez">
+        <comment>Creacion de la tabla de las listas</comment>
+        <createTable tableName="TB_PRODUCTO_LISTA"
+                     remarks="Contiene la informacion de los tipos de listas de precios de los productos">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de la lista ">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="DESCRIPCION" type="tinytext" remarks="Descripcion de la lista">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ESTADO" type="boolean" remarks="Activo/Inactivo">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-012" author="Alejandro Toigo">
+        <comment>Creacion de la tabla de las listas de precio disponibles de los productos</comment>
+        <createTable tableName="TB_PRODUCTO_LISTA_PRECIO"
+                     remarks="Contiene la informacion de los tipos de listas de precios de los productos">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de la lista de precio">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="PRODUCTO_ID" type="int" remarks="Identificador de los productos">
+                <constraints foreignKeyName="FK_PRODUCTO_LISTA_PRODUCTO" references="TB_PRODUCTO(id)"/>
+            </column>
+            <column name="LISTA_ID" type="int" remarks="Identificador de las secciones">
+                <constraints foreignKeyName="FK_PRODUCTO_LISTA_LISTA" references="TB_PRODUCTO_LISTA(id)"/>
+            </column>
+            <column name="PRECIO_COMPRA" type="int" remarks="Precio compra del producto">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COSTO" type="int" remarks="COSTO del producto">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRECIO_VENTA" type="int" remarks="Precio venta del producto">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-013" author="Alejandro Toigo">
+        <comment>Creacion de la tabla de movimientos de stock</comment>
+        <createTable tableName="TB_MOVIMIENTO_STOCK"
+                     remarks="Contiene la informacion de los movimientos de stock de los productos">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador del movimiento de stock">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="FECHA_HORA" type="timestamp" remarks="Fecha hora de alta del movimiento"/>
+            <column name="TIPO_MOVIMIENTO" type="int" remarks="Identificador del tipo de movimiento (se encuentra en maestro)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MOTIVO" type="int" remarks="Identificador del motivo (se encuentra en maestro)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OBSERVACION" type="mediumtext" remarks="Observación del movimiento"/>
+        </createTable>
+
+        <createTable tableName="TB_MOVIMIENTO_STOCK_DETALLE"
+                     remarks="Contiene la informacion del detalle del movimiento de stock">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador del movimiento de stock">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="PRODUCTO_ID" type="int" remarks="Identificador de los productos">
+                <constraints foreignKeyName="FK_PRODUCTO_MOVIMIENTO_STOCK" references="TB_PRODUCTO(id)" nullable="false"/>
+            </column>
+            <column name="MOVIMIENTO_ID" type="int" remarks="Identificador de los productos">
+                <constraints foreignKeyName="FK_MOVIMIENTO_MOVIMIENTO_DETALLE" references="TB_MOVIMIENTO_STOCK(id)" nullable="false"/>
+            </column>
+            <column name="CANTIDAD" type="int" remarks="Cantidad de producto">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-014 - Modificar tipos de datos" author="Alejandro Toigo">
+        <modifyDataType  columnName="precio_compra"
+                         newDataType="numeric"
+                         tableName="tb_producto_lista_precio"/>
+        <modifyDataType  columnName="costo"
+                         newDataType="numeric"
+                         tableName="tb_producto_lista_precio"/>
+        <modifyDataType  columnName="precio_venta"
+                         newDataType="numeric"
+                         tableName="tb_producto_lista_precio"/>
+        <modifyDataType  columnName="impuestoiva"
+                         newDataType="numeric"
+                         tableName="tb_producto"/>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-015" author="Matias Rodriguez">
+        <comment>Creacion de tabla de ventas</comment>
+        <!-- CREACION TB_VENTA -->
+        <createTable tableName="TB_VENTA" remarks="Contiene la informacion de todos las ventas">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de las ventas">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="NRO_TICKET" type="int" remarks="Identificador de las ventas">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FECHA_HORA" type="datetime" remarks=" fecha de las ventas"/>
+            <column name="TOTAL" type="numeric" remarks="Importe total del producto">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CLIENTE_ID" type="int" remarks="Identificador del cliente"/>
+            <column name="TIPO_FAC" type="VARCHAR(255)" remarks="Tipo de factura"/>
+            <column name="PUNTO_VENTA" type="int" remarks="Punto de venta"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-016" author="Matias Rodriguez">
+        <comment>Creacion de tabla de detalles de venta </comment>
+        <!-- CREACION TB_DETALLEVENTA -->
+        <createTable tableName="TB_DETALLEVENTA" remarks="Contiene la informacion de todos los detalles de venta">
+            <column name="ID" type="int" autoIncrement="true" remarks="Identificador de las formas de pago">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="VENTA_ID" type="int" remarks="Identificador de las ventas">
+                <constraints foreignKeyName="FK_DETALLE_VENTA" references="TB_VENTA(ID)"/>
+            </column>
+            <column name="CANTIDAD" type="int" remarks="Cantidad del detalle">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRECIO_HISTORICO" type="numeric" remarks="Precio historico de venta">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRODUCTO_ID" type="int" remarks="Identificador del producto">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

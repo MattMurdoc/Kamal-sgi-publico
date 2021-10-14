@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="CLI-PRO-001" author="Matias Rodriguez">
+        <insert tableName="TB_DEPARTAMENTO">
+            <column name="ID" value="1"/>
+            <column name="DESCRIPCION" value="Perfumeria"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="TB_DEPARTAMENTO">
+            <column name="ID" value="2"/>
+            <column name="DESCRIPCION" value="Alimentacion y Bebidas"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="TB_SECCION">
+            <column name="ID" value="1"/>
+            <column name="DESCRIPCION" value="Higiene Personal"/>
+            <column name="DEPARTAMENTO_ID" value="1"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="TB_SECCION">
+            <column name="ID" value="2"/>
+            <column name="DESCRIPCION" value="Bebidas"/>
+            <column name="DEPARTAMENTO_ID" value="2"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="TB_SECCION">
+            <column name="ID" value="3"/>
+            <column name="DESCRIPCION" value="Alimentos"/>
+            <column name="DEPARTAMENTO_ID" value="2"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="TB_FAMILIA">
+            <column name="ID" value="1"/>
+            <column name="DESCRIPCION" value="Higiene Bucal"/>
+            <column name="SECCION_ID" value="1"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="TB_FAMILIA">
+            <column name="ID" value="2"/>
+            <column name="DESCRIPCION" value="Productos Capilares"/>
+            <column name="SECCION_ID" value="1"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+<!--
+        <insert tableName="TB_FAMILIA ">
+            <column name="DESCRIPCION" value="Bebidas Alcoholicas"/>
+            <column name="SECCION_ID" value="1"/>
+        </insert>
+-->
+
+        <insert tableName="TB_FAMILIA">
+            <column name="ID" value="3"/>
+            <column name="DESCRIPCION" value="Harina"/>
+            <column name="SECCION_ID" value="3"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+        <insert tableName="TB_SUBFAMILIA">
+            <column name="ID" value="1"/>
+            <column name="DESCRIPCION" value="Pasta dental"/>
+            <column name="FAMILIA_ID" value="1"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="TB_SUBFAMILIA">
+            <column name="ID" value="2"/>
+            <column name="DESCRIPCION" value="Hilo dental"/>
+            <column name="FAMILIA_ID" value="1"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="TB_SUBFAMILIA">
+            <column name="ID" value="3"/>
+            <column name="DESCRIPCION" value="Shampoo"/>
+            <column name="FAMILIA_ID" value="2"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+<!--
+        <insert tableName="TB_SUBFAMILIA">
+            <column name="DESCRIPCION" value="Fernet"/>
+            <column name="FAMILIA_ID" value=""/>
+        </insert>
+-->
+    </changeSet>
+
+    <changeSet id="CLI-PRO-002" author="Alejandro Toigo">
+        <insert tableName="TB_UNIDAD">
+            <column name="ID" value="1"/>
+            <column name="DESCRIPCION" value="LITRO"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+        <insert tableName="TB_UNIDAD">
+            <column name="ID" value="2"/>
+            <column name="DESCRIPCION" value="KG"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+        <insert tableName="TB_UNIDAD">
+            <column name="ID" value="3"/>
+            <column name="DESCRIPCION" value="GR"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+        <insert tableName="TB_UNIDAD">
+            <column name="ID" value="4"/>
+            <column name="DESCRIPCION" value="ML"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="CLI-PRO-003" author="Nicolas Martin">
+
+        <insert tableName="TB_MARCA">
+            <column name="ID" value="1"/>
+            <column name="DESCRIPCION" value="Coca Cola"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="TB_MARCA">
+            <column name="ID" value="2"/>
+            <column name="DESCRIPCION" value="Nestle"/>
+            <column name="ESTADO" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="PRO-CLI-001: Datos maestro de tipo de documento" author="Alejandro Toigo">
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="1"/>
+            <column name="DESCRIPCION" value="Ninguno"/>
+            <column name="VALOR" value="32"/>
+            <column name="TIPO_DATO" value="Tipo DNI"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="2"/>
+            <column name="DESCRIPCION" value="LE"/>
+            <column name="VALOR" value="48"/>
+            <column name="TIPO_DATO" value="Tipo DNI"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="3"/>
+            <column name="DESCRIPCION" value="LC"/>
+            <column name="VALOR" value="49"/>
+            <column name="TIPO_DATO" value="Tipo DNI"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="4"/>
+            <column name="DESCRIPCION" value="DNI"/>
+            <column name="VALOR" value="50"/>
+            <column name="TIPO_DATO" value="Tipo DNI"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="5"/>
+            <column name="DESCRIPCION" value="Pasaporte"/>
+            <column name="VALOR" value="51"/>
+            <column name="TIPO_DATO" value="Tipo DNI"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="6"/>
+            <column name="DESCRIPCION" value="CI"/>
+            <column name="VALOR" value="52"/>
+            <column name="TIPO_DATO" value="Tipo DNI"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="7"/>
+            <column name="DESCRIPCION" value="CUIT"/>
+            <column name="VALOR" value="67"/>
+            <column name="TIPO_DATO" value="Tipo DNI"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="8"/>
+            <column name="DESCRIPCION" value="CUIL"/>
+            <column name="VALOR" value="76"/>
+            <column name="TIPO_DATO" value="Tipo DNI"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="PRO-CLI-002: Datos maestro de tipo de responsabilidad cliente" author="Alejandro Toigo">
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="9"/>
+            <column name="DESCRIPCION" value="No responsable"/>
+            <column name="VALOR" value="65"/>
+            <column name="TIPO_DATO" value="Tipo responsabilidad cliente"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="10"/>
+            <column name="DESCRIPCION" value="Consumidor final"/>
+            <column name="VALOR" value="67"/>
+            <column name="TIPO_DATO" value="Tipo responsabilidad cliente"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="11"/>
+            <column name="DESCRIPCION" value="Responsable exento"/>
+            <column name="VALOR" value="69"/>
+            <column name="TIPO_DATO" value="Tipo responsabilidad cliente"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="12"/>
+            <column name="DESCRIPCION" value="Responsable inscripto"/>
+            <column name="VALOR" value="73"/>
+            <column name="TIPO_DATO" value="Tipo responsabilidad cliente"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="13"/>
+            <column name="DESCRIPCION" value="Monotributo"/>
+            <column name="VALOR" value="77"/>
+            <column name="TIPO_DATO" value="Tipo responsabilidad cliente"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="14"/>
+            <column name="DESCRIPCION" value="Monotributo social"/>
+            <column name="VALOR" value="83"/>
+            <column name="TIPO_DATO" value="Tipo responsabilidad cliente"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="15"/>
+            <column name="DESCRIPCION" value="No categorizado"/>
+            <column name="VALOR" value="84"/>
+            <column name="TIPO_DATO" value="Tipo responsabilidad cliente"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="16"/>
+            <column name="DESCRIPCION" value="Eventual"/>
+            <column name="VALOR" value="86"/>
+            <column name="TIPO_DATO" value="Tipo responsabilidad cliente"/>
+        </insert>
+        <insert tableName="TB_MAESTRO">
+            <column name="ID" value="17"/>
+            <column name="DESCRIPCION" value="Eventual social"/>
+            <column name="VALOR" value="87"/>
+            <column name="TIPO_DATO" value="Tipo responsabilidad cliente"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
